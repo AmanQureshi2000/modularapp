@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { getBooks, deleteBook } from '../../api/services/book.service.js';
+import { getCategories, deleteCategory } from '../../api/services/category.service.js';
 
 const Table = () => {
-  const [books, setBooks] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   // Load users on mount
   useEffect(() => {
-    fetchBooks();
+    fetchCategories();
   }, []);
 
-  const fetchBooks = async () => {
+  const fetchCategories = async () => {
     try {
       setLoading(true);
-      let data = await getBooks();
+      let data = await getCategories();
       console.log(data);
       data = data.sort((a, b) => a.id - b.id);
       /**
@@ -22,9 +22,9 @@ const Table = () => {
        * 1. Removed debug console logs (line 18-20).
        * 2. Ensure state is set to an array even if the API returns a different structure.
        */
-      setBooks(Array.isArray(data) ? data : []);
+      setCategories(Array.isArray(data) ? data : []);
     } catch (err) {
-      setError('Failed to fetch books');
+      setError('Failed to fetch categories');
       console.error(err);
     } finally {
       setLoading(false);
@@ -32,52 +32,46 @@ const Table = () => {
   };
 
   const handleDelete = async (id) => {
-    if (window.confirm('Are you sure you want to delete this book?')) {
+    if (window.confirm('Are you sure you want to delete this category?')) {
       try {
-        await deleteBook(id);
+        await deleteCategory(id);
         // Refresh list by filtering out the deleted user
-        setBooks(books.filter(book => book.id !== id));
+        setCategories(categories.filter(category=> category.id !== id));
       } catch (err) {
         alert('Delete failed');
       }
     }
   };
 
-  if (loading) return <p>Loading books...</p>;
+  if (loading) return <p>Loading categories...</p>;
   if (error) return <p style={{ color: 'red' }}>{error}</p>;
 
   return (
     <div style={{ padding: '20px' }}>
-      <h2>Book Management</h2>
+      <h2>Category Management</h2>
       <table border="1" cellPadding="10" style={{ width: '100%', textAlign: 'left', borderCollapse: 'collapse' }}>
         <thead>
           <tr style={{ backgroundColor: '#f4f4f4' }}>
             <th>ID</th>
-            <th>Title</th>
-            <th>Author</th>
-            <th>ISBN</th>
-            <th>Price</th>
-            <th>Stock Count</th>
-            <th>Published Date</th>
+            <th>User ID</th>
+            <th>Name</th>
+            <th>Color</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           {/* Rectification: Uncommented the mapping logic to display users */}
-          {books.length > 0 ? (
-            books.map((book) => (
-              <tr key={book.id}>
-                <td>{book.id}</td>
-                <td>{book.title}</td>
-                <td>{book.author}</td>
-                <td>{book.isbn}</td>
-                <td>{book.price}</td>
-                <td>{book.stock_count}</td>
-                <td>{book.published_date}</td>
+          {categories.length > 0 ? (
+            categories.map((category) => (
+              <tr key={category.id}>
+                <td>{category.id}</td>
+                <td>{category.user_id}</td>
+                <td>{category.name}</td>
+                <td>{category.color}</td>
                 <td>
-                  <button onClick={() => console.log('Edit', book.id)}>Edit</button>
+                  <button onClick={() => console.log('Edit', category.id)}>Edit</button>
                   <button 
-                    onClick={() => handleDelete(book.id)} 
+                    onClick={() => handleDelete(category.id)} 
                     style={{ marginLeft: '10px', color: 'red' }}
                   >
                     Delete
@@ -87,7 +81,7 @@ const Table = () => {
             ))
           ) : (
             <tr>
-              <td colSpan="4" style={{ textAlign: 'center' }}>No books available.</td>
+              <td colSpan="4" style={{ textAlign: 'center' }}>No catgeories available.</td>
             </tr>
           )}
         </tbody>
