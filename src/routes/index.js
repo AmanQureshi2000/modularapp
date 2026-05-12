@@ -1,8 +1,11 @@
 // src/routes/index.js
-export { default as UserRoutes } from './user.routes.jsx';
-export {default as BookRoutes} from './book.routes.jsx';
-export {default as ComputerRoutes} from './computer.routes.jsx';
-export {default as CategoryRoutes} from './category.routes.jsx';
-export {default as ImageRoutes} from './image.routes.jsx';
-export {default as YoutubeRoutes} from './youtube.routes.jsx';
-export {default as PortfolioRoutes} from './portfolio.routes.jsx';
+import { lazy } from 'react';
+
+// Using dynamic imports
+export const UserRoutes = lazy(() => import('./user.routes.jsx'));
+export const BookRoutes = lazy(() => import('./book.routes.jsx'));
+export const ComputerRoutes = lazy(() => import('./computer.routes.jsx'));
+export const CategoryRoutes = lazy(() => import('./category.routes.jsx'));
+export const ImageRoutes = lazy(() => import('./image.routes.jsx'));
+export const YoutubeRoutes = lazy(() => import('./youtube.routes.jsx'));
+export const PortfolioRoutes = lazy(() => import('./portfolio.routes.jsx'));
