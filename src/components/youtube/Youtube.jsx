@@ -31,8 +31,6 @@ function Youtube() {
   const fetchVideos = async (channelId, pageToken = null) => {
     try {
       const data = await getVideos(channelId, pageToken);
-      console.log(`=======line 34===============`);
-      console.log(data.items);
       setVideos(prev => [...prev, ...data.items]);
       setNextPageToken(data.nextPageToken);
     } catch (err) {

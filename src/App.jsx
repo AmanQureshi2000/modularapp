@@ -1,6 +1,7 @@
 // App.jsx
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { UserRoutes,BookRoutes,ComputerRoutes,CategoryRoutes,ImageRoutes,YoutubeRoutes } from './routes'; // Clean single-line import
+import { UserRoutes,BookRoutes,ComputerRoutes,CategoryRoutes,ImageRoutes,YoutubeRoutes,PortfolioRoutes } from './routes'; // Clean single-line import
+import Portfolio from './components/portfolio/Portfolio';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/categories/*" element={<CategoryRoutes />} />
         <Route path="/images/*" element={<ImageRoutes />} />
         <Route path="/youtube/*" element={<YoutubeRoutes/>} />
+        <Route path="/portfolio/*" element={<PortfolioRoutes/>}/>
         <Route path="/" element={<h1>Welcome</h1>} />
       </Routes>
     </BrowserRouter>
