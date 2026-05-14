@@ -9,7 +9,8 @@ import {
   CategoryRoutes, 
   ImageRoutes, 
   YoutubeRoutes, 
-  PortfolioRoutes 
+  PortfolioRoutes,
+  TodoRoutes 
 } from './routes'; 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
           <Route path="/images/*" element={<ImageRoutes />} />
           <Route path="/youtube/*" element={<YoutubeRoutes/>} />
           <Route path="/portfolio/*" element={<PortfolioRoutes/>}/>
+          <Route path="/todos/*" element={<TodoRoutes/>}/>
           <Route path="/" element={<h1>Welcome</h1>} />
         </Routes>
       </Suspense>
