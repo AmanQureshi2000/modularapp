@@ -54,3 +54,8 @@ export const uncompleteHabit = async (completionId) => {
   const res = await apiClient.delete(`/habits/completions/${completionId}`);
   return res.data;
 };
+
+export const getChartData = async () => {
+  const res = await apiClient.get('/habits/charts/data');
+  return res.data;
+};
