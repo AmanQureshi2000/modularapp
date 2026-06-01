@@ -10,3 +10,4 @@ export const ImageRoutes = lazy(() => import('./image.routes.jsx'));
 export const YoutubeRoutes = lazy(() => import('./youtube.routes.jsx'));
 export const PortfolioRoutes = lazy(() => import('./portfolio.routes.jsx'));
 export const TodoRoutes = lazy(()=>import('./todo.routes.jsx'));
+export const HabitRoutes = lazy(() => import('./habit.routes.jsx'));
